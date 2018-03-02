@@ -1,4 +1,4 @@
-# spark-jvm-profiler [![Build Status](https://travis-ci.org/DataDog/spark-jvm-profiler.svg)](https://travis-ci.org/DataDog/spark-jvm-profiler)
+# spark-jvm-profiler [![Build Status](https://travis-ci.org/Magnetic/spark-jvm-profiler.svg)](https://travis-ci.org/Magnetic/spark-jvm-profiler)
 
 spark-jvm-profiler is a JVM agent profiler that sends profiling data to StatsD.  Inspired by [riemann-jvm-profiler](https://github.com/riemann/riemann-jvm-profiler), it was primarily built for profiling Hadoop jobs, but can be used with any JVM process.
 

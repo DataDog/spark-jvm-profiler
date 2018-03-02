@@ -3,6 +3,7 @@ package com.etsy.statsd.profiler.profilers;
 import com.etsy.statsd.profiler.Arguments;
 import com.etsy.statsd.profiler.Profiler;
 import com.etsy.statsd.profiler.reporter.Reporter;
+import com.etsy.statsd.profiler.util.MockArguments;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class MockReportingProfiler extends Profiler {
     public MockReportingProfiler(Reporter reporter) {
-        super(reporter, null);
+        super(reporter, MockArguments.BASIC);
     }
 
     @Override

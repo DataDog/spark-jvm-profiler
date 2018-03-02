@@ -2,14 +2,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.datadoghq</groupId>
+    <groupId>com.magnetic</groupId>
     <artifactId>spark-jvm-profiler</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>spark-jvm-profiler</name>
     <description>Simple JVM profiler using StatsD</description>
-    <url>https://github.com/datadoghq/spark-jvm-profiler</url>
+    <url>https://github.com/Magnetic/spark-jvm-profiler</url>
 
     <licenses>
         <license>
@@ -20,8 +20,8 @@
     </licenses>
 
     <scm>
-        <url>git@github.com:datadoghq/statsd-jvm-profiler.git</url>
-        <connection>scm:git:git@github.com:datadoghq/statsd-jvm-profiler.git</connection>
+        <url>git@github.com:Magnetic/statsd-jvm-profiler.git</url>
+        <connection>scm:git:git@github.com:Magnetic/statsd-jvm-profiler.git</connection>
     </scm>
 
     <developers>
@@ -34,6 +34,11 @@
             <id>buryat</id>
             <name>Vadim Semenov</name>
             <url>github.com/buryat</url>
+        </developer>
+        <developer>
+            <id>helkhalfi</id>
+            <name>Hichame El Khalfi</name>
+            <url>github.com/helkhalfi</url>
         </developer>
     </developers>
 

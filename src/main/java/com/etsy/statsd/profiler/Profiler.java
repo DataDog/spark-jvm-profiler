@@ -3,6 +3,8 @@ package com.etsy.statsd.profiler;
 import com.etsy.statsd.profiler.reporter.Reporter;
 import com.google.common.base.Preconditions;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -15,8 +17,8 @@ public abstract class Profiler {
     public static final Class<?>[] CONSTRUCTOR_PARAM_TYPES = new Class<?>[]{Reporter.class, Arguments.class};
 
     private final Reporter<?> reporter;
-    // CONTAINER_ID=container_1486158130664_0002_01_000157
-    private String[] tags = {};
+    // CONTAINER_ID=container_e273_1510780065801_7737_01_000042
+    private String[] tags = null;
 
     private long recordedStats = 0;
     public Profiler(Reporter reporter, Arguments arguments) {
@@ -24,16 +26,41 @@ public abstract class Profiler {
         this.reporter = reporter;
         handleArguments(arguments);
 
+        Collection<String> tagsList = new ArrayList<>();
         String containerId = System.getenv("CONTAINER_ID");
         if (containerId != null) {
             String applicationId = getApplicationId(containerId);
-            tags = new String[]{"container_id:" + containerId, "application_id:" + applicationId};
+            tagsList.add("container_id:" + containerId);
+            tagsList.add("application_id:" + applicationId);
         }
+
+        String luigiTaskFamily = arguments.remainingArgs.get("LUIGI_TASK_FAMILY");
+        if (luigiTaskFamily != null) {
+            tagsList.add("luigiTaskFamily:" + luigiTaskFamily);
+        }
+
+        String luigiTaskName = arguments.remainingArgs.get("LUIGI_TASK_NAME");
+        if (luigiTaskName != null) {
+            tagsList.add("luigiTaskName:" + luigiTaskName);
+        }
+
+        String luigiTaskDate = arguments.remainingArgs.get("LUIGI_TASK_DATE");
+        if (luigiTaskDate != null) {
+            tagsList.add("luigiTaskDate:" + luigiTaskDate);
+        }
+
+        String luigiTaskHour = arguments.remainingArgs.get("LUIGI_TASK_HOUR");
+        if (luigiTaskHour != null) {
+            tagsList.add("luigiTaskHour:" + luigiTaskHour);
+        }
+
+        String[] tagsTemp = new String[tagsList.size()];
+        tags = tagsList.toArray(tagsTemp);
     }
 
     public static String getApplicationId(String containerId) {
-        String[] parts = containerId.replace("container_", "").split("_");
-        return "application_" + parts[0] + "_" + parts[1];
+        String[] parts = containerId.split("_");
+        return "application_" + parts[2] + "_" + parts[3];
     }
 
     /**
